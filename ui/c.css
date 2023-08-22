@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
+
+:root {
+    --colorebackroundmene: rgb(34, 34, 34);
+    --bordocontainer: rgb(72, 72, 72);
+    --colore-pulsanti: rgb(47, 47, 47);
+    --colore-bordi: rgb(66, 66, 66);
+    --colore-testo: rgb(133, 133, 133);
+    --coloremenuprelevadeposita: rgb(34, 34, 34);
+    --colore-bordipulsantihover: rgb(133, 133, 133);
+    --colore-bordisceltecazzo: rgb(114, 114, 114);
+    --colore-inputcazzo: rgb(42, 42, 42);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.all {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 2.5vh;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+   
+}
+
+.container-bossmenu {
+    display: none;
+    flex-direction: column;
+    height: 45vh;
+    width: 14vw;
+    background-color: var(--colorebackroundmene);
+    border: solid 0.2vh var(--bordocontainer);
+    border-radius: 0.8vh ;
+    -webkit-transform: perspective(0px) translateZ(0);
+    transform: perspective(0px) translateZ(0);
+    transform: perspective(900px) rotateY(10deg);
+}   
+
+.container-titolo {
+    height: 8vh;
+    width: 14vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titolo {
+
+    width: 100%;
+    height: 7vh;
+    color: white;
+    margin-top: 2vh;
+    font-size: 2.7vh;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.conteiner-logo {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+}
+
+.immagine {
+    height: 15vh;
+    width: 7.5vw;
+}
+
+.container-scelte {
+    width: 14vw;
+    height: 37vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.pulsanti-scelte {
+    width: 12vw;
+    margin-top: 1vh;
+    border-radius: 0.2vh;
+    border: solid var(--colore-bordi) 0.2vh;
+    background-color: var(--colore-pulsanti);
+    height: 4vh;
+    cursor: pointer;
+    font-size: 1.5vh;
+    font-weight: bolder;
+    color: var(--colore-testo);
+    transition: all 0.4s;
+}
+
+.pulsanti-scelte:hover {
+    color: white;
+    border: solid var(--colore-bordipulsantihover) 0.2vh;
+}
+
+.preleva-sicuro {
+    height: 15vh;
+    width: 15vw;
+    background-color: var(--coloremenuprelevadeposita);
+    animation: scale-up-center 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    border-radius: 0.6vh;
+}
+
+.container-ciacazz {
+    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    
+}
+.c {
+    display: none;
+}
+.d {
+    display: none;
+}
+
+.conteiner-scritta {
+    text-align: center;
+    color: rgb(168, 168, 168);
+    font-family: sans-serif, ;
+    width: 15vw;
+    font-size: 1.4vh;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 0.5vh;
+}
+
+.conteiner-input {
+    width: 15vw;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputscritta {
+    width: 12vw;
+    height: 3vh;
+    border: solid 0.2vh var(--bordocontainer);
+    background-color: var(--colore-inputcazzo);
+    user-select: none;
+    border-radius: 0.6vh;
+    font-size: 1.5vh;
+    transition: all 0.4s;
+    font-family: 'Roboto', sans-serif;
+    padding: 1vh;
+    color: white;
+    text-align: center;
+    outline: none;
+}
+.inputscrittadeposita {
+    width: 12vw;
+    height: 3vh;
+    border: solid 0.2vh var(--bordocontainer);
+    background-color: var(--colore-inputcazzo);
+    user-select: none;
+    border-radius: 0.6vh;
+    font-size: 1.5vh;
+    transition: all 0.4s;
+    font-family: 'Roboto', sans-serif;
+    padding: 1vh;
+    color: white;
+    text-align: center;
+    outline: none;
+}
+ 
+
+
+.inputscritta:hover {
+    border: solid var(--colore-bordipulsantihover) 0.2vh;
+} 
+
+@-webkit-keyframes scale-up-center {
+0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+}
+100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+}
+}
+@keyframes scale-up-center {
+0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+}
+100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+}
+}
+
+.container-pulsantecustom {
+    height: fit-content;
+    width: 15vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pulsanteconferma {
+    width: 8vw;
+    height: 4vh;
+    margin-top: 1vh;
+    font-size: 1.5vh;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(131, 131, 131);
+    border: solid var(--colore-bordi) 0.2vh;
+    background-color: var(--colore-pulsanti);
+    border-radius: 0.5vh;
+    cursor: pointer;
+}
+
+.pulsanteconferma:hover {
+    color: white;
+    border: solid var(--colore-bordipulsantihover) 0.2vh;
+    transition: all 0.4s;
+}

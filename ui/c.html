@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="c.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/saferInnerHTML@1/dist/saferInnerHTML.polyfills.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css"/>
+</head>
+<body>
+    <div class="all">
+        <div class="container-bossmenu">
+            <div class="container-titolo">
+                
+                <span class="titolo">BOSS MENU</span>
+            </div>
+            <div class="container-scelte">
+                <button class="pulsanti-scelte" id="preleva"><i class="fa-solid fa-dollar-sign"></i>  WITHDRAW</button>
+                <button class="pulsanti-scelte" id="deposita"><i class="fa-solid fa-circle-dollar-to-slot"></i>  DEPOSIT</button>
+                <button class="pulsanti-scelte" id="money"><i class="fa-solid fa-hand-holding-dollar"></i> SHOW BALANCE</button>
+                <button class="pulsanti-scelte" id="licenzia"><i class="fa-solid fa-user-minus"></i>  LICENSE</button>
+                <button class="pulsanti-scelte" id="assumi"><i class="fa-solid fa-user-plus"></i>  HIRE</button>
+                
+            </div>
+            <div class="conteiner-logo">
+                <img src="logo.png" class="immagine">
+            </div>
+        </div>
+    </div>
+    <div class="c">
+        <div class="container-ciacazz">
+            <div class="preleva-sicuro">
+                <div class="conteiner-scritta">
+                    <span>Withdraw Amount</span>
+                </div>
+                <div class="conteiner-input">
+                    <input class="inputscritta" type="number"  placeholder="Number">
+                </div>
+                <div class="container-pulsantecustom">
+                    <button id="conferma" class="pulsanteconferma"><i class="fa-solid fa-check"></i> CONFIRMS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d">
+        <div class="container-ciacazz">
+            <div class="preleva-sicuro">
+                <div class="conteiner-scritta">
+                    <span>Deposit Amount</span>
+                </div>
+                <div class="conteiner-input">
+                    <input class="inputscrittadeposita" type="number" placeholder="Number">
+                </div>
+                <div class="container-pulsantecustom">
+                    <button id="confermadeposita" class="pulsanteconferma"><i class="fa-solid fa-check"></i> CONFIRMS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    let job
+
+    
+    $(document).ready(function() {
+        $("#preleva").click(function() {
+            $(".c").show();
+        });
+        $("#deposita").click(function() {
+            $(".d").show();
+        });
+
+        $("#money").click(function() {
+            $(".container-bossmenu").fadeOut();
+            $.post(`https://${GetParentResourceName()}/money`, JSON.stringify({
+                society: job
+            }));
+        });
+
+        $("#licenzia").click(function() {
+            $(".container-bossmenu").fadeOut();
+            $.post(`https://${GetParentResourceName()}/licenzia`, JSON.stringify({
+                society: job
+            }));
+        });
+        $("#assumi").click(function() {
+            $(".container-bossmenu").fadeOut();
+            $.post(`https://${GetParentResourceName()}/assumi`, JSON.stringify({
+                society: job
+            }));
+        });
+        
+        $("#conferma").click(function() {
+            let prelevaNum = 0
+            prelevaNum = $('.inputscritta').val()
+            $(".c").fadeOut();
+            $(".container-bossmenu").fadeOut();
+            $('.inputscritta').val(''),
+            $.post(`https://${GetParentResourceName()}/preleva`, JSON.stringify({
+                importo:  prelevaNum,
+                society: job
+            }));
+           
+        });
+    });
+        $("#confermadeposita").click(function() {
+            let depositaNum = 0
+            depositaNum = $('.inputscrittadeposita').val()
+            $(".d").fadeOut();
+            $(".container-bossmenu").fadeOut();
+            $('.inputscrittadeposita').val(''),
+            $.post(`https://${GetParentResourceName()}/deposita`, JSON.stringify({
+                importo: depositaNum,
+                society: job
+            }));
+           
+        });
+        
+
+    document.onkeydown = function (evt) {
+        evt = evt || window.event;
+        var isEscape = ("key" in evt) ? (evt.key === "Escape" || evt.key === "Esc") : (evt.keyCode === 27);
+
+        if (isEscape) {
+            fetch(`https://${GetParentResourceName()}/chiudi`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json; charset=UTF-8",
+                },
+                body: JSON.stringify({}),
+            }).then((resp) => resp.json())
+            .then(() => {
+                const elementsToHide = [
+                    ".container-bossmenu",
+                    ".c",
+                    ".d"
+                ];
+                
+                for (const elementSelector of elementsToHide) {
+                    const elements = document.querySelectorAll(elementSelector);
+                    elements.forEach(element => {
+                        element.style.display = "none";
+                    });
+                }
+            });
+        }
+    };
+
+    function openBossMenu() {
+        document.querySelector(".container-bossmenu").style.display = "flex";
+    }
+
+    window.addEventListener("message", function (event) {
+        let data = event.data;
+        if (data.type === "openBossMenu") {
+            job = data.data
+            openBossMenu();
+        }
+    });
+</script>
+</html>
+
+<!-- Krs Boss Menu -->
