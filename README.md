@@ -2,7 +2,7 @@
 
 
 ```lua
-RegisterNetEvent('krs_bossmenu:openNui', function(job) -- Trigger Open Nui Boss Menu
+RegisterNetEvent('krs_bossmenu:openNui', function(job) -- Open Nui Boss Menu
     openBossMenu(job)
 end)
 ```
