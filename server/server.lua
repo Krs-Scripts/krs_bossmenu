@@ -45,13 +45,13 @@ end)
 ESX.RegisterServerCallback('assumiGiocatore', function(source, cb, target)
     local xPlayer = ESX.GetPlayerFromId(source)
     local job = xPlayer.getJob().name
-
+    print(job)
     if xPlayer.job.grade_name == 'boss' then
         local xTarget = ESX.GetPlayerFromId(target)
         
         if xTarget then
-            xTarget.setJob(jobName, 0)
-            local jobLabel = ESX.GetJobLabel(jobName, 0)
+            xTarget.setJob(job, 1)
+            local jobLabel = xTarget.getJob().label
             xTarget.showNotification("Sei stato assunto come " .. jobLabel)
             xPlayer.showNotification("Hai assunto " .. xTarget.getName() .. " come " .. jobLabel)
             cb(true)
